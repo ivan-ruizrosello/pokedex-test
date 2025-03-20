@@ -1,8 +1,9 @@
-import React, { useState } from "react";
 import styled from "styled-components";
 import { createPokemon } from "../../redux/actions";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../redux/store";
+import { useState } from "react";
+import { showPokemonAddedToast } from "../../toast/successToast";
 
 interface PokemonModalProps {
   isOpen: boolean;
@@ -62,24 +63,35 @@ const SubmitButton = styled.button`
   padding: 5px 10px;
 `;
 
+const defaultFormData = {
+  name: "",
+  height: 0,
+  number: 0,
+  health: 0,
+  weight: 0,
+  url: "",
+};
+
 const AddPokemonModal = ({ isOpen, onClose }: PokemonModalProps) => {
   const dispatch: AppDispatch = useDispatch();
-  const [formData, setFormData] = useState({
-    name: "",
-    height: 0,
-    number: 0,
-    health: 0,
-    weight: 0,
-    url: "",
-  });
+  const [formData, setFormData] = useState(defaultFormData);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const value = e.target.type === "number" ? parseInt(e.target.value) : e.target.value;
+
+    console.log(value);
+    setFormData({ ...formData, [e.target.name]: value });
   };
+
+  const clearForm = () => {
+    setFormData(defaultFormData);
+  }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     dispatch(createPokemon(formData));
+    clearForm()
+    showPokemonAddedToast(formData.name);
     onClose();
   };
 
@@ -88,12 +100,12 @@ const AddPokemonModal = ({ isOpen, onClose }: PokemonModalProps) => {
       <ModalContainer onClick={(e) => e.stopPropagation()}>
         <h2>Add Pokémon</h2>
         <Form onSubmit={handleSubmit}>
-          <Input type="text" name="name" placeholder="Name" onChange={handleChange} required />
-          <Input type="number" name="number" placeholder="Number" onChange={handleChange} required />
-          <Input type="number" name="height" placeholder="Height (cm)" onChange={handleChange} required />
-          <Input type="number" name="weight" placeholder="Weight (kg)" onChange={handleChange} required />
-          <Input type="number" name="health" placeholder="Health" onChange={handleChange} required />
-          <Input type="text" name="url" placeholder="Image URL" onChange={handleChange} required />
+          <Input type="text" name="name" placeholder="Name" onChange={handleChange} value={formData.name} required />
+          <Input type="number" name="number" placeholder="Number" onChange={handleChange} value={formData.number}  required />
+          <Input type="number" name="height" placeholder="Height (cm)" onChange={handleChange} value={formData.height}  required />
+          <Input type="number" name="weight" placeholder="Weight (kg)" onChange={handleChange} value={formData.weight}  required />
+          <Input type="number" name="health" placeholder="Health" onChange={handleChange} value={formData.health}  required />
+          <Input type="text" name="url" placeholder="Image URL" onChange={handleChange} value={formData.url}  required />
           <SubmitButton type="submit">Add Pokémon</SubmitButton>
         </Form>
         <CloseButton onClick={onClose}>Close</CloseButton>
