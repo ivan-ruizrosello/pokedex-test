@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon",
-    "db:importar": "node ./src/server/seeder/seeder.js -i",
-    "db:eliminar": "node ./src/server/seeder/seeder.js -e"
+    "db:importar": "ts-node ./src/server/seeder/seeder.ts -i",
+    "db:eliminar": "ts-node ./src/server/seeder/seeder.ts -e"
   },
   "keywords": [],
   "author": "",
