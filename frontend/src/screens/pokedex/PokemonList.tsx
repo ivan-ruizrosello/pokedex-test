@@ -14,7 +14,7 @@ const Container = styled.div`
     margin-left:auto;
     margin-right:auto;
     flex-wrap: wrap;
-    gap: 2px;
+    gap: 10px;
 `
 
 
@@ -25,7 +25,6 @@ type Props = {
 const PokemonList = (props: Props) => {
     return (
         <Container>
-            {props.pokemons.length}
             {props.pokemons.map((pokemon) => (
                 <PokemonCard {...pokemon} key={pokemon.name} />
             ))}

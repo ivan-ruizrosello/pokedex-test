@@ -11,7 +11,7 @@ type Props = {
 
 const Card = styled.div`
     background-color: #FFFFFF;
-    width: 200px;
+    width: 180px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -29,11 +29,11 @@ const PokemonCard = (props: Props) => {
     return (
         <Card>
             <PokemonImage src={props.url} alt={props.name} />
-            <span>{props.name}</span>
-            <span>{props.height}</span>
-            <span>{props.number}</span>
-            <span>{props.health}</span>
-            <span>{props.weight}</span>
+            <span>name: {props.name}</span>
+            <span>height: {props.height}</span>
+            <span>number: {props.number}</span>
+            <span>health: {props.health}</span>
+            <span>weight: {props.weight}</span>
         </Card>
     );
 };
