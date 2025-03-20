@@ -40,3 +40,8 @@ const fetchPokemonsFailure = (errorMessage: string) => ({
   type: 'FETCH_POKEMONS_FAILURE' as const,
   payload: errorMessage
 });
+
+export const addPokemon = (pokemon: Pokemon) => ({
+    type: 'ADD_POKEMON' as const,
+    payload: pokemon
+});

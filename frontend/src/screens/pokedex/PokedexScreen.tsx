@@ -1,13 +1,17 @@
 
+import { useState } from "react";
 import PokedexScreenWrapper from "./pokedexScreen.style"
 import PokemonList from "./PokemonList"
+import AddPokemonModal from "./AddPokemonModal"
 
 const PokedexScreen = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <PokedexScreenWrapper>
 
       <div className="actions_container">
-        <img src="/assets/images/add_btn.png" className="action_img"/>
+        <img onClick={() => setIsModalOpen(true)} src="/assets/images/add_btn.png" className="action_img"/>
       </div>
 
       <div className="title_section">
@@ -15,6 +19,8 @@ const PokedexScreen = () => {
       </div>
 
       <PokemonList />
+
+      <AddPokemonModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </PokedexScreenWrapper>
   )
 }
