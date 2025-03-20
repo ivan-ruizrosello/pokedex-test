@@ -1,4 +1,4 @@
-import init from "../controllers/initController";
+import init from "./init";
 import { db } from "../config/db";
 
 const importarDatos = async () => {
