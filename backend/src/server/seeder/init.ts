@@ -1,4 +1,4 @@
-import Pokemon from "../database/models/pokemon";
+import Pokemon from "../database/models/Pokemon";
 
 type PokemonStat = {
   base_stat: number;
