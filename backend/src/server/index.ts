@@ -1,8 +1,6 @@
 import express from "express";
 import cors from "cors";
-import https from "https";
-import fs from "fs";
-import { connectToDatabase, db } from "./config/db";
+import { connectToDatabase } from "./config/db";
 
 import * as dotenv from "dotenv";
 import path from "path";
@@ -31,6 +29,10 @@ const initializeServer = (port: number): void => {
 app.use(cors());
 app.use(express.json());
 app.use(exampleRoutes);
+
+app.get('/', (req, res) => {
+  res.send('Hello World!');
+});
 
 
 export default initializeServer;
