@@ -12,7 +12,7 @@ const appStore = configureStore({
 });
 
 appStore.dispatch(fetchPokemons());
-
+export type AppDispatch = typeof appStore.dispatch
 export type RootState = ReturnType<typeof appStore.getState>;
 
 export default appStore;

@@ -11,4 +11,24 @@ const getAll = async (req: Request, res: Response) => {
   }
 };
 
-export { getAll };
+
+const createPokemon = async (req: Request, res: Response) => {
+  try {
+    const { name, height, number, health, weight, url } = req.body;
+
+    const newPokemon = await Pokemon.create({
+      name,
+      height,
+      number,
+      health,
+      weight,
+      url,
+    });
+
+    return res.json(newPokemon);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export { getAll, createPokemon };

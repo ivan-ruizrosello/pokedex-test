@@ -41,7 +41,27 @@ const fetchPokemonsFailure = (errorMessage: string) => ({
   payload: errorMessage
 });
 
-export const addPokemon = (pokemon: Pokemon) => ({
+
+export const createPokemon = (pokemon: Pokemon) => {
+    return async (dispatch: Dispatch<ActionType>) => {
+      try {
+        await fetch('http://localhost:7768/pokemon', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(pokemon)
+        });
+  
+        dispatch(addPokemon(pokemon));
+      }
+      catch (error) {
+        // Handle error
+      }
+    };
+  };
+
+const addPokemon = (pokemon: Pokemon) => ({
     type: 'ADD_POKEMON' as const,
     payload: pokemon
 });

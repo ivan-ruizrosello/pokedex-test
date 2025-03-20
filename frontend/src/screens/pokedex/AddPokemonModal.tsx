@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { createPokemon } from "../../redux/actions";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../redux/store";
 
 interface PokemonModalProps {
   isOpen: boolean;
@@ -34,6 +37,7 @@ const CloseButton = styled.button`
   cursor: pointer;
   margin-top: 10px;
   border-radius: 5px;
+  width: 100%;
 `;
 
 const Form = styled.form`
@@ -52,12 +56,14 @@ const SubmitButton = styled.button`
   background: green;
   color: white;
   border: none;
-  padding: 10px;
   cursor: pointer;
   border-radius: 5px;
+  width: 100%;
+  padding: 5px 10px;
 `;
 
 const AddPokemonModal = ({ isOpen, onClose }: PokemonModalProps) => {
+  const dispatch: AppDispatch = useDispatch();
   const [formData, setFormData] = useState({
     name: "",
     height: 0,
@@ -73,7 +79,7 @@ const AddPokemonModal = ({ isOpen, onClose }: PokemonModalProps) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // onAdd(formData);
+    dispatch(createPokemon(formData));
     onClose();
   };
 
