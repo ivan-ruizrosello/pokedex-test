@@ -1,10 +1,8 @@
 
 import PokedexScreenWrapper from "./pokedexScreen.style"
-import { useState } from "react";
-
+import PokemonList from "./PokemonList"
 
 const PokedexScreen = () => {
-
   return (
     <PokedexScreenWrapper>
 
@@ -16,16 +14,10 @@ const PokedexScreen = () => {
         <h2>Pokédex de Impackta</h2>
       </div>
 
-      <div className="pokedex_container">
-
-        <>
-    
-        </>
-          
-      </div>
-
+      <PokemonList />
     </PokedexScreenWrapper>
   )
 }
 
 export default PokedexScreen
+

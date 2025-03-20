@@ -32,19 +32,6 @@ export const PokedexScreenWrapper = styled.main`
         }
     }
 
-    .pokedex_container{
-        padding:10px;
-        //background-color:rgba(22,22,22,0.7);
-        background-color:#FFFFFF;
-        width:80%;
-        height:350px;
-        overflow-y:scroll;
-        display:flex;
-        margin-left:auto;
-        margin-right:auto;
-
-    }
-
     .action_img{
         cursor:pointer;
     }

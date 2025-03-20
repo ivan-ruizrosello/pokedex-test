@@ -4,6 +4,6 @@ import { getAll } from "../controllers/PokemonController";
 
 const router = express.Router();
 
-router.get("/pokemon", getAll);
+router.get("/pokemons", getAll);
 
 export default router;
