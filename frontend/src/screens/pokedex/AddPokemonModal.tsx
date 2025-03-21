@@ -30,6 +30,11 @@ const ModalContainer = styled.div`
   text-align: center;
 `;
 
+const ModalTitle = styled.h2`
+  margin-top: 0;
+  margin-bottom: 15px;
+`;
+
 const CloseButton = styled.button`
   background: red;
   color: white;
@@ -45,12 +50,28 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
   gap: 10px;
+  width: 100%;
+`;
+
+const InputGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  text-align: left;
+`;
+
+const Label = styled.label`
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 4px;
 `;
 
 const Input = styled.input`
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  width: 100%;
+  box-sizing: border-box;
 `;
 
 const SubmitButton = styled.button`
@@ -60,7 +81,8 @@ const SubmitButton = styled.button`
   cursor: pointer;
   border-radius: 5px;
   width: 100%;
-  padding: 5px 10px;
+  padding: 8px 10px;
+  margin-top: 5px;
 `;
 
 const defaultFormData = {
@@ -98,14 +120,86 @@ const AddPokemonModal = ({ isOpen, onClose }: PokemonModalProps) => {
   return (
     <Overlay isOpen={isOpen} onClick={onClose}>
       <ModalContainer onClick={(e) => e.stopPropagation()}>
-        <h2>Add Pokémon</h2>
+        <ModalTitle>Add Pokémon</ModalTitle>
         <Form onSubmit={handleSubmit}>
-          <Input type="text" name="name" placeholder="Name" onChange={handleChange} value={formData.name} required />
-          <Input type="number" name="number" placeholder="Number" onChange={handleChange} value={formData.number}  required />
-          <Input type="number" name="height" placeholder="Height (cm)" onChange={handleChange} value={formData.height}  required />
-          <Input type="number" name="weight" placeholder="Weight (kg)" onChange={handleChange} value={formData.weight}  required />
-          <Input type="number" name="health" placeholder="Health" onChange={handleChange} value={formData.health}  required />
-          <Input type="text" name="url" placeholder="Image URL" onChange={handleChange} value={formData.url}  required />
+          <InputGroup>
+            <Label htmlFor="name">Name</Label>
+            <Input 
+              id="name"
+              type="text" 
+              name="name" 
+              placeholder="Enter Pokémon name" 
+              onChange={handleChange} 
+              value={formData.name} 
+              required 
+            />
+          </InputGroup>
+          
+          <InputGroup>
+            <Label htmlFor="number">Number</Label>
+            <Input 
+              id="number"
+              type="number" 
+              name="number" 
+              placeholder="Enter Pokédex number" 
+              onChange={handleChange} 
+              value={formData.number} 
+              required 
+            />
+          </InputGroup>
+          
+          <InputGroup>
+            <Label htmlFor="height">Height (cm)</Label>
+            <Input 
+              id="height"
+              type="number" 
+              name="height" 
+              placeholder="Enter height in cm" 
+              onChange={handleChange} 
+              value={formData.height} 
+              required 
+            />
+          </InputGroup>
+          
+          <InputGroup>
+            <Label htmlFor="weight">Weight (kg)</Label>
+            <Input 
+              id="weight"
+              type="number" 
+              name="weight" 
+              placeholder="Enter weight in kg" 
+              onChange={handleChange} 
+              value={formData.weight} 
+              required 
+            />
+          </InputGroup>
+          
+          <InputGroup>
+            <Label htmlFor="health">Health Points</Label>
+            <Input 
+              id="health"
+              type="number" 
+              name="health" 
+              placeholder="Enter HP value" 
+              onChange={handleChange} 
+              value={formData.health} 
+              required 
+            />
+          </InputGroup>
+          
+          <InputGroup>
+            <Label htmlFor="url">Image URL</Label>
+            <Input 
+              id="url"
+              type="text" 
+              name="url" 
+              placeholder="Enter image URL" 
+              onChange={handleChange} 
+              value={formData.url} 
+              required 
+            />
+          </InputGroup>
+          
           <SubmitButton type="submit">Add Pokémon</SubmitButton>
         </Form>
         <CloseButton onClick={onClose}>Close</CloseButton>
