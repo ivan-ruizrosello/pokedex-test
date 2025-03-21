@@ -1,4 +1,4 @@
-import Pokemon from "../database/models/Pokemon";
+import PokemonModel from "../database/models/Pokemon";
 
 type PokemonStat = {
   base_stat: number;
@@ -15,7 +15,7 @@ const init =  async () => {
       const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
       const data = await response.json();
 
-      await Pokemon.create({
+      await PokemonModel.create({
         name: data.name,
         url: data.sprites.other["official-artwork"].front_default,
         weight: data.weight,

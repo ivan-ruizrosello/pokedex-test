@@ -1,6 +1,5 @@
 import { Response, Request } from "express";
-import { z } from "zod";
-import Pokemon from "../database/models/Pokemon";
+import PokemonModel, { PokemonSchema } from "../database/models/Pokemon";
 
 const getHeaviestPokemons = async (req: Request, res: Response) => {
   try {
@@ -10,7 +9,7 @@ const getHeaviestPokemons = async (req: Request, res: Response) => {
       limit = 25;
     }
 
-    const pokemons = await Pokemon.findAll({
+    const pokemons = await PokemonModel.findAll({
       limit,
       order: [["weight", "DESC"]],
     });
@@ -20,16 +19,6 @@ const getHeaviestPokemons = async (req: Request, res: Response) => {
     console.log(error);
   }
 };
-
-
-const PokemonSchema = z.object({
-  name: z.string().min(1, "Name is required"),
-  height: z.number().positive("Height must be a positive number"),
-  number: z.number().int("Number must be an integer").positive("Number must be positive"),
-  health: z.number().int("Health must be an integer").positive("Health must be positive"),
-  weight: z.number().positive("Weight must be a positive number"),
-  url: z.string().url("URL must be a valid URL")
-});
 
 const createPokemon = async (req: Request, res: Response) => {
   try {
@@ -44,7 +33,7 @@ const createPokemon = async (req: Request, res: Response) => {
 
 
     const { name, height, number, health, weight, url } = req.body;
-    const newPokemon = await Pokemon.create({
+    const newPokemon = await PokemonModel.create({
       name,
       height,
       number,
