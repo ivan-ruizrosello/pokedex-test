@@ -11,7 +11,7 @@ type Props = {
 
 const Card = styled.div`
     background-color: #FFFFFF;
-    width: 180px;
+    min-width: 200px;
     display: flex;
     flex-direction: column;
     justify-content: center;

@@ -5,16 +5,17 @@ import { connect } from "react-redux";
 import { RootState } from "../../redux/store";
 
 const Container = styled.div`
-    padding:10px;
-    background-color:#FFFFFF;
-    width:80%;
-    height:350px;
-    overflow-y:scroll;
-    display:flex;
-    margin-left:auto;
-    margin-right:auto;
+    padding: 10px;
+    background-color: #FFFFFF;
+    width: 80%;
+    height: 550px;
+    overflow-y: scroll;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
     flex-wrap: wrap;
-    gap: 10px;
+    justify-content: space-between;
+    gap: 12px;
 `
 
 
