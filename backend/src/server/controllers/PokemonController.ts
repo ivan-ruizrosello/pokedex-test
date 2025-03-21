@@ -25,7 +25,7 @@ const createPokemon = async (req: Request, res: Response) => {
       url,
     });
 
-    return res.json(newPokemon);
+    return res.status(201).json(newPokemon);
   } catch (error) {
     console.log(error);
   }
