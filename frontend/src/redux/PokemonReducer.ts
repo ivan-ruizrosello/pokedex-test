@@ -19,7 +19,6 @@ interface Pokemon {
     | { type: 'FETCH_POKEMONS_REQUEST' }
     | { type: 'FETCH_POKEMONS_SUCCESS'; payload: Pokemon[] }
     | { type: 'FETCH_POKEMONS_FAILURE'; payload: string }
-    | { type: 'ADD_POKEMON'; payload: Pokemon }
   
   // Initial state
   const initialState: PokemonState = {
@@ -50,14 +49,6 @@ interface Pokemon {
           isLoading: false,
           error: action.payload
         };
-
-      
-      case 'ADD_POKEMON':
-        return {
-          ...state,
-          pokemons: [...state.pokemons, action.payload]
-        };
-
       
       default:
         return state;

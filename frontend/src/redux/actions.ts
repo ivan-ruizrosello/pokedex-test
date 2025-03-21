@@ -48,15 +48,10 @@ export const createPokemon = (pokemon: Pokemon) => {
         body: JSON.stringify(pokemon)
       });
 
-      dispatch(addPokemon(pokemon));
+      await fetchPokemons()(dispatch);
     }
     catch (error) {
       // Handle error
     }
   };
 };
-
-const addPokemon = (pokemon: Pokemon) => ({
-    type: 'ADD_POKEMON' as const,
-    payload: pokemon
-});
