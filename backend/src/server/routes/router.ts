@@ -1,10 +1,10 @@
 import express from "express";
 
-import { createPokemon, getAll } from "../controllers/PokemonController";
+import { createPokemon, getHeaviestPokemons } from "../controllers/PokemonController";
 
 const router = express.Router();
 
-router.get("/pokemons", getAll);
+router.get("/pokemons/heaviest", getHeaviestPokemons);
 router.post("/pokemon", createPokemon);
 
 export default router;

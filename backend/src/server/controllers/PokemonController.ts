@@ -1,9 +1,18 @@
 import { Response, Request } from "express";
 import Pokemon from "../database/models/Pokemon";
 
-const getAll = async (req: Request, res: Response) => {
+const getHeaviestPokemons = async (req: Request, res: Response) => {
   try {
-    const pokemons = await Pokemon.findAll();
+    let limit = Number(req.query.limit);
+
+    if (!limit) {
+      limit = 25;
+    }
+
+    const pokemons = await Pokemon.findAll({
+      limit,
+      order: [["weight", "DESC"]],
+    });
 
     return res.json(pokemons);
   } catch (error) {
@@ -31,4 +40,4 @@ const createPokemon = async (req: Request, res: Response) => {
   }
 }
 
-export { getAll, createPokemon };
+export { getHeaviestPokemons, createPokemon };

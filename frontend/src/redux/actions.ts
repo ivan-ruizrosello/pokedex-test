@@ -7,7 +7,7 @@ export const fetchPokemons = () => {
     try {
       dispatch(fetchPokemonsRequest());
       
-      const response = await fetch('http://localhost:7768/pokemons');
+      const response = await fetch('http://localhost:7768/pokemons/heaviest?limit=25');
       const data = await response.json();
 
 
@@ -38,23 +38,23 @@ const fetchPokemonsFailure = (errorMessage: string) => ({
 
 
 export const createPokemon = (pokemon: Pokemon) => {
-    return async (dispatch: Dispatch<ActionType>) => {
-      try {
-        await fetch('http://localhost:7768/pokemon', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(pokemon)
-        });
-  
-        dispatch(addPokemon(pokemon));
-      }
-      catch (error) {
-        // Handle error
-      }
-    };
+  return async (dispatch: Dispatch<ActionType>) => {
+    try {
+      await fetch('http://localhost:7768/pokemon', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(pokemon)
+      });
+
+      dispatch(addPokemon(pokemon));
+    }
+    catch (error) {
+      // Handle error
+    }
   };
+};
 
 const addPokemon = (pokemon: Pokemon) => ({
     type: 'ADD_POKEMON' as const,
